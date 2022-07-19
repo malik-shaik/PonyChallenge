@@ -1,17 +1,17 @@
 import { createContext, Dispatch, ReactNode, useReducer } from 'react'
-import { reducer, initialMazeDataState, MazeData } from 'context/maze/reducer'
+import { reducer, GameData, initialGameDataState } from 'context/game/reducer'
 
-export const MazeContext = createContext<{
-  state: MazeData
+export const GameContext = createContext<{
+  gameData: GameData
   dispatch: Dispatch<any>
-}>({ state: initialMazeDataState, dispatch: () => null })
+}>({ gameData: initialGameDataState, dispatch: () => null })
 
-export const MazeProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, initialMazeDataState)
+export const GameContextProvider = ({ children }: { children: ReactNode }) => {
+  const [gameData, dispatch] = useReducer(reducer, initialGameDataState)
 
   return (
-    <MazeContext.Provider value={{ state, dispatch }}>
+    <GameContext.Provider value={{ gameData, dispatch }}>
       {children}
-    </MazeContext.Provider>
+    </GameContext.Provider>
   )
 }

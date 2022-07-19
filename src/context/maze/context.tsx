@@ -1,16 +1,20 @@
 import { createContext, Dispatch, ReactNode, useReducer } from 'react'
-import { reducer, initialMazeDataState, MazeData } from 'context/maze/reducer'
+import {
+  reducer,
+  initialMazeDatamazeData,
+  MazeData,
+} from 'context/maze/reducer'
 
 export const MazeContext = createContext<{
-  state: MazeData
+  mazeData: MazeData
   dispatch: Dispatch<any>
-}>({ state: initialMazeDataState, dispatch: () => null })
+}>({ mazeData: initialMazeDatamazeData, dispatch: () => null })
 
-export const MazeProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, initialMazeDataState)
+export const MazeContextProvider = ({ children }: { children: ReactNode }) => {
+  const [mazeData, dispatch] = useReducer(reducer, initialMazeDatamazeData)
 
   return (
-    <MazeContext.Provider value={{ state, dispatch }}>
+    <MazeContext.Provider value={{ mazeData, dispatch }}>
       {children}
     </MazeContext.Provider>
   )

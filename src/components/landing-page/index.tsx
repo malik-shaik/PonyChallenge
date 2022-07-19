@@ -1,50 +1,34 @@
-import { Button } from '@material-ui/core'
 import { FC, useContext, useEffect } from 'react'
+import { makeStyles, createStyles, Box } from '@material-ui/core'
 import { MazeContext } from 'context/maze/context'
-import { createMaze, loadMazeData, makeNextMove } from 'context/maze/actions'
+import { loadMazeData } from 'context/maze/actions'
 import { Maze } from 'components/maze'
-import { Direction, PonyName } from 'constants/index'
-
-const { EAST, WEST, NORTH, SOUTH } = Direction
+import { NewGame } from 'components/game/new-game'
 
 export const LandingPage: FC = () => {
-  const { state, dispatch } = useContext(MazeContext)
-  console.log('STATE....', state)
+  const classes = useStyles()
+  const { dispatch } = useContext(MazeContext)
 
   useEffect(() => {
     const mazeId = sessionStorage.getItem('mazeId')
     if (mazeId) {
-      loadMazeData({ mazeId }, dispatch)
+      loadMazeData(dispatch)
     }
-  }, [state])
-
-  const handleClick = async (
-    _evt: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    direction: Direction
-  ) => {
-    await makeNextMove({ mazeId: state['maze_id'], direction }, dispatch)
-  }
-
-  const handleNewGameClick = async () => {
-    await createMaze(
-      {
-        'maze-width': 15,
-        'maze-height': 15,
-        'maze-player-name': PonyName.Fluttershy,
-        difficulty: 1,
-      },
-      dispatch
-    )
-  }
+  }, [])
 
   return (
-    <>
-      <Maze />
-      <Button onClick={(e) => handleClick(e, EAST)}>Right</Button>
-      <Button onClick={(e) => handleClick(e, WEST)}>Left</Button>
-      <Button onClick={(e) => handleClick(e, NORTH)}>Up</Button>
-      <Button onClick={(e) => handleClick(e, SOUTH)}>Down</Button>
-      <Button onClick={handleNewGameClick}>New Game</Button>
-    </>
+    <Box className={classes.main}>
+      {sessionStorage.getItem('mazeId') ? <Maze /> : <NewGame />}
+    </Box>
   )
 }
+
+const useStyles = makeStyles(
+  createStyles({
+    main: {
+      margin: 0,
+      minHeight: '100vh',
+      backgroundColor: '#EDE7D9',
+    },
+  })
+)

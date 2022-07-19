@@ -14,8 +14,8 @@ export interface MazeData {
   }
 }
 
-// **** Global State ****
-export const initialMazeDataState: MazeData = {
+// **** Global mazeData ****
+export const initialMazeDatamazeData: MazeData = {
   pony: [],
   domokun: [],
   'end-point': [],
@@ -35,14 +35,14 @@ export type SetMazeDataAction = {
 }
 
 // **** Reducer ****
-export const reducer = (state: MazeData, action: SetMazeDataAction) => {
+export const reducer = (mazeData: MazeData, action: SetMazeDataAction) => {
   const { type, payload } = action
 
   switch (type) {
     case Action.SET_MAZE_DATA:
-      return { ...state, ...payload }
+      return { ...mazeData, ...payload }
 
     default:
-      return state
+      return mazeData
   }
 }

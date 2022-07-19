@@ -5,11 +5,11 @@ import { MazeData } from 'context/maze/reducer'
 import { SetMazeDataAction } from 'context/maze/reducer'
 import { Dispatch } from 'react'
 
-interface LoadMazeDataParams {
-  mazeId: string
-}
+// interface LoadMazeDataParams {
+//   mazeId: string
+// }
 
-interface MakeNextMoveParams extends LoadMazeDataParams {
+interface MakeNextMoveParams {
   direction: Direction
 }
 
@@ -21,14 +21,12 @@ interface CreateMazeParams {
 }
 
 // **** Load Maze data Action ****
-export const loadMazeData = async (
-  { mazeId }: LoadMazeDataParams,
-  dispatch: Dispatch<SetMazeDataAction>
-) => {
-  if (!mazeId) {
-    return
-  }
+export const loadMazeData = async (dispatch: Dispatch<SetMazeDataAction>) => {
   try {
+    const mazeId = sessionStorage.getItem('mazeId')
+    if (!mazeId) {
+      throw new Error()
+    }
     const { data } = await axios.get(`/maze/${mazeId}`)
     dispatch({ type: Action.SET_MAZE_DATA, payload: data as MazeData })
   } catch (error) {
@@ -39,18 +37,24 @@ export const loadMazeData = async (
 
 // **** Make Next Move Action ****
 export const makeNextMove = async (
-  { mazeId, direction }: MakeNextMoveParams,
+  { direction }: MakeNextMoveParams,
   dispatch: Dispatch<SetMazeDataAction>
 ) => {
   try {
+    const mazeId = sessionStorage.getItem('mazeId')
+    if (!mazeId) {
+      throw new Error()
+    }
+
     const url = `/maze/${mazeId}`
     const config = { headers: { 'Content-Type': 'application/json' } }
     const body = JSON.stringify({
       direction,
     })
     const { data } = await axios.post(url, body, config)
+
     if (data.state === 'active' && data['state-result'] === 'Move accepted') {
-      await loadMazeData({ mazeId }, dispatch)
+      await loadMazeData(dispatch)
     }
   } catch (error) {
     console.error(error)
@@ -72,7 +76,8 @@ export const createMaze = async (
       throw new Error()
     }
     sessionStorage.setItem('mazeId', data['maze_id'])
-    await loadMazeData({ mazeId: data['maze_id'] }, dispatch)
+
+    await loadMazeData(dispatch)
   } catch (error) {
     console.error(error)
     throw new Error('Error loading data.')

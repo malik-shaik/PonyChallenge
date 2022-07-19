@@ -1,48 +1,35 @@
+import { PonyName } from 'constants/index'
 import { Action } from 'constants/action-types'
 
-export interface MazeData {
-  pony: number[]
-  domokun: number[]
-  'end-point': number[]
-  size: number[]
+export interface GameData {
+  'maze-width': number
+  'maze-height': number
+  'maze-player-name': PonyName
   difficulty: number
-  data: string[][]
-  'maze-id': string
-  'game-state': {
-    state: string
-    'state-result': string
-  }
 }
 
-// **** Global State ****
-export const initialMazeDataState: MazeData = {
-  pony: [],
-  domokun: [],
-  'end-point': [],
-  size: [],
-  difficulty: 0,
-  data: [],
-  'maze-id': '',
-  'game-state': {
-    state: '',
-    'state-result': '',
-  },
+// **** Global mazeData ****
+export const initialGameDataState: GameData = {
+  'maze-width': 15,
+  'maze-height': 15,
+  'maze-player-name': 'Twilight Sparkle' as PonyName,
+  difficulty: 1,
 }
 
-export type SetMazeDataAction = {
-  type: Action.SET_MAZE_DATA
-  payload: MazeData
+export type SetGameDataAction = {
+  type: Action.SET_GAME_DATA
+  payload: GameData
 }
 
 // **** Reducer ****
-export const reducer = (state: MazeData, action: SetMazeDataAction) => {
+export const reducer = (mazeData: GameData, action: SetGameDataAction) => {
   const { type, payload } = action
 
   switch (type) {
-    case Action.SET_MAZE_DATA:
-      return { ...state, ...payload }
+    case Action.SET_GAME_DATA:
+      return { ...mazeData, ...payload }
 
     default:
-      return state
+      return mazeData
   }
 }

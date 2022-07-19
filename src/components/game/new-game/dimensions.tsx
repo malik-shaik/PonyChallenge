@@ -1,0 +1,57 @@
+import { useContext, useEffect, useState } from 'react'
+import { Box, makeStyles, createStyles, Typography } from '@material-ui/core'
+import { DropDown } from 'components/utils/dropdown'
+import * as _ from 'lodash'
+import { GameContext } from 'context/game/context'
+import { GameData, updateGameData } from 'context/game'
+
+export const Dimensions = () => {
+  const classes = useStyles()
+  const { gameData, dispatch } = useContext(GameContext)
+  const [height, setHeight] = useState<number>(gameData['maze-height'])
+  const [width, setWidth] = useState<number>(gameData['maze-width'])
+
+  useEffect(() => {
+    const data: GameData = {
+      ...gameData,
+      'maze-height': height,
+      'maze-width': width,
+    }
+    updateGameData({ data }, dispatch)
+  }, [height, width])
+
+  return (
+    <Box className={classes.dimensionsContainer}>
+      <Typography className={classes.label}>Height</Typography>
+      <DropDown
+        value={height}
+        handleChange={(evt) => setHeight(evt.target.value as number)}
+        items={_.range(15, 26)}
+      />
+      <Typography style={{ marginLeft: 40 }} className={classes.label}>
+        Width
+      </Typography>
+      <DropDown
+        value={width}
+        handleChange={(evt) => setWidth(evt.target.value as number)}
+        items={_.range(15, 26)}
+      />
+    </Box>
+  )
+}
+
+const useStyles = makeStyles(
+  createStyles({
+    dimensionsContainer: {
+      padding: '0 20px',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    label: {
+      fontSize: '1.1rem',
+      fontWeight: 'bold',
+      color: '#5386e4',
+      marginRight: 20,
+    },
+  })
+)
