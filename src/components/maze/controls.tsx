@@ -31,7 +31,7 @@ export const Controls: FC = () => {
   }
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress)
-    return () => document.removeEventListener('keypress', handleKeyPress)
+    return () => document.removeEventListener('keydown', handleKeyPress)
   }, [])
 
   const handleClick = (direction: Direction) => {
@@ -46,18 +46,34 @@ export const Controls: FC = () => {
       </Typography>
       <Box className={classes.keysContainer}>
         <Box className={classes.row}>
-          <Box className={classes.key} onClick={() => handleClick(NORTH)}>
+          <Box
+            data-testid="up direction"
+            className={classes.key}
+            onClick={() => handleClick(NORTH)}
+          >
             <ArrowUpwardRounded />
           </Box>
         </Box>
         <Box className={classes.row}>
-          <Box className={classes.key} onClick={() => handleClick(WEST)}>
+          <Box
+            data-testid="left direction"
+            className={classes.key}
+            onClick={() => handleClick(WEST)}
+          >
             <ArrowBackRounded />
           </Box>
-          <Box className={classes.key} onClick={() => handleClick(SOUTH)}>
+          <Box
+            data-testid="down direction"
+            className={classes.key}
+            onClick={() => handleClick(SOUTH)}
+          >
             <ArrowDownwardRounded />
           </Box>
-          <Box className={classes.key} onClick={() => handleClick(EAST)}>
+          <Box
+            data-testid="right direction"
+            className={classes.key}
+            onClick={() => handleClick(EAST)}
+          >
             <ArrowForwardRounded />
           </Box>
         </Box>
