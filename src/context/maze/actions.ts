@@ -1,33 +1,22 @@
 import axios from 'axios'
-import { Direction, PonyName } from 'constants/index'
+import { apiPonyChallengeUrl, Direction } from 'constants/index'
 import { Action } from 'constants/action-types'
-import { MazeData } from 'context/maze/reducer'
-import { SetMazeDataAction } from 'context/maze/reducer'
+import { initialMazeDataState, MazeData } from 'context/maze/reducer'
+import { MazeDataAction } from 'context/maze/reducer'
 import { Dispatch } from 'react'
+import { GameData } from 'context/game'
 
-// interface LoadMazeDataParams {
-//   mazeId: string
-// }
-
-interface MakeNextMoveParams {
-  direction: Direction
-}
-
-interface CreateMazeParams {
-  'maze-width': number
-  'maze-height': number
-  'maze-player-name': PonyName
-  difficulty: number
-}
-
-// **** Load Maze data Action ****
-export const loadMazeData = async (dispatch: Dispatch<SetMazeDataAction>) => {
+/**
+ * Fetches maze data from api call and sets to global state
+ * @param dispatch function for sending action reducer
+ */
+export const loadMazeData = async (dispatch: Dispatch<MazeDataAction>) => {
   try {
     const mazeId = sessionStorage.getItem('mazeId')
     if (!mazeId) {
       throw new Error()
     }
-    const { data } = await axios.get(`/maze/${mazeId}`)
+    const { data } = await axios.get(`${apiPonyChallengeUrl}/maze/${mazeId}`)
     dispatch({ type: Action.SET_MAZE_DATA, payload: data as MazeData })
   } catch (error) {
     console.error(error)
@@ -35,10 +24,14 @@ export const loadMazeData = async (dispatch: Dispatch<SetMazeDataAction>) => {
   }
 }
 
-// **** Make Next Move Action ****
+/**
+ * Make api call to make next move and sets data to global state
+ * @param direction
+ * @param dispatch function for sending action reducer
+ */
 export const makeNextMove = async (
-  { direction }: MakeNextMoveParams,
-  dispatch: Dispatch<SetMazeDataAction>
+  { direction }: { direction: Direction },
+  dispatch: Dispatch<MazeDataAction>
 ) => {
   try {
     const mazeId = sessionStorage.getItem('mazeId')
@@ -46,29 +39,31 @@ export const makeNextMove = async (
       throw new Error()
     }
 
-    const url = `/maze/${mazeId}`
+    const url = `${apiPonyChallengeUrl}/maze/${mazeId}`
     const config = { headers: { 'Content-Type': 'application/json' } }
     const body = JSON.stringify({
       direction,
     })
-    const { data } = await axios.post(url, body, config)
+    await axios.post(url, body, config)
 
-    if (data.state === 'active' && data['state-result'] === 'Move accepted') {
-      await loadMazeData(dispatch)
-    }
+    await loadMazeData(dispatch)
   } catch (error) {
     console.error(error)
     throw new Error('Error making next move.')
   }
 }
 
-// **** Create Maze Action ****
+/**
+ * Make api call to create new maze and sets maze data to global state
+ * @param params game data
+ * @param dispatch function for sending action reducer
+ */
 export const createMaze = async (
-  params: CreateMazeParams,
-  dispatch: Dispatch<SetMazeDataAction>
+  params: GameData,
+  dispatch: Dispatch<MazeDataAction>
 ) => {
   try {
-    const url = `/maze`
+    const url = `${apiPonyChallengeUrl}/maze`
     const config = { headers: { 'Content-Type': 'application/json' } }
     const body = JSON.stringify({ ...params })
     const { data } = await axios.post(url, body, config)
@@ -82,4 +77,12 @@ export const createMaze = async (
     console.error(error)
     throw new Error('Error loading data.')
   }
+}
+
+/**
+ * Resets maze data state to initial state
+ * @param dispatch function for sending action reducer
+ */
+export const resetMazeData = (dispatch: Dispatch<MazeDataAction>) => {
+  dispatch({ type: Action.RESET_MAZE_DATA, payload: initialMazeDataState })
 }

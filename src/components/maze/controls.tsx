@@ -71,7 +71,6 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       margin: 'auto',
       width: 300,
-      backgroundColor: 'white',
     },
     info: {
       color: '#5386e4',

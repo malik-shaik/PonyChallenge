@@ -25,9 +25,11 @@ export const DifficultyLevel: FC = () => {
     <Box className={classes.difficultySection}>
       <Typography
         className={classes.label}
+        data-testid="difficultyLevel"
       >{`Difficulty level: ${difficultyLevel}`}</Typography>
       <Slider
         key={`slider-${difficultyLevel}`}
+        data-testid="slider"
         className={classes.slider}
         defaultValue={difficultyLevel}
         getAriaValueText={(value: number) => `${value}`}

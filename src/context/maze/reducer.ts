@@ -11,11 +11,12 @@ export interface MazeData {
   'game-state': {
     state: string
     'state-result': string
+    'hidden-url': string | null
   }
 }
 
 // **** Global mazeData ****
-export const initialMazeDatamazeData: MazeData = {
+export const initialMazeDataState: MazeData = {
   pony: [],
   domokun: [],
   'end-point': [],
@@ -26,16 +27,17 @@ export const initialMazeDatamazeData: MazeData = {
   'game-state': {
     state: '',
     'state-result': '',
+    'hidden-url': null,
   },
 }
 
-export type SetMazeDataAction = {
-  type: Action.SET_MAZE_DATA
+export type MazeDataAction = {
+  type: Action.SET_MAZE_DATA | Action.RESET_MAZE_DATA
   payload: MazeData
 }
 
 // **** Reducer ****
-export const reducer = (mazeData: MazeData, action: SetMazeDataAction) => {
+export const reducer = (mazeData: MazeData, action: MazeDataAction) => {
   const { type, payload } = action
 
   switch (type) {

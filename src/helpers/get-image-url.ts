@@ -1,4 +1,4 @@
-import { PonyName } from 'constants/index'
+import { PonyNames as PonyName } from 'constants/index'
 
 interface Params {
   imageName: PonyName | string

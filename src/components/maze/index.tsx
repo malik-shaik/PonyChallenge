@@ -7,12 +7,13 @@ import { CellItem, Wall } from 'constants/index'
 import { Row } from 'components/maze/row'
 import { Win } from 'components/game/win'
 import { Controls } from 'components/maze/controls'
+import { Lost } from 'components/game/lost'
 
 export const Maze: FC = () => {
   const classes = useStyles()
   const { mazeData } = useContext(MazeContext)
   const [rows, setRows] = useState<ReactNode[]>([])
-
+  console.log('MAZE...', mazeData)
   const loadMaze = () => {
     setRows([])
     let cellNumber = 0
@@ -69,11 +70,16 @@ export const Maze: FC = () => {
     return null
   }
 
+  console.log('maze data from maze', mazeData['game-state'])
+  console.log('maze data from maze', sessionStorage.getItem('mazeId'))
   return (
     <Box className={classes.section}>
-      <Box className={classes.maze}>{rows}</Box>
+      <Box data-testid="maze" className={classes.maze}>
+        {rows}
+      </Box>
       <Controls />
       <Win />
+      <Lost />
     </Box>
   )
 }

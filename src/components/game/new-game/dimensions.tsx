@@ -22,13 +22,19 @@ export const Dimensions = () => {
 
   return (
     <Box className={classes.dimensionsContainer}>
-      <Typography className={classes.label}>Height</Typography>
+      <Typography data-testid="height" className={classes.label}>
+        Height
+      </Typography>
       <DropDown
         value={height}
         handleChange={(evt) => setHeight(evt.target.value as number)}
         items={_.range(15, 26)}
       />
-      <Typography style={{ marginLeft: 40 }} className={classes.label}>
+      <Typography
+        data-testid="width"
+        style={{ marginLeft: 40 }}
+        className={classes.label}
+      >
         Width
       </Typography>
       <DropDown

@@ -1,4 +1,4 @@
-export enum PonyName {
+export enum PonyNames {
   TwilightSparkle = 'Twilight Sparkle',
   Fluttershy = 'Fluttershy',
   Rarity = 'Rarity',

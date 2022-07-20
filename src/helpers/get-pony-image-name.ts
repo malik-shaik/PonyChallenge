@@ -1,4 +1,4 @@
-import { PonyName } from 'constants/index'
+import { PonyNames as PonyName } from 'constants/index'
 
 /**
  * Gives pony image name by pony name

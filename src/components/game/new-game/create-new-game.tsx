@@ -15,6 +15,7 @@ export const CreateNewGame: FC = () => {
   return (
     <Box className={classes.container}>
       <Button
+        aria-label="create maze"
         className={classes.button}
         disableElevation
         disableFocusRipple

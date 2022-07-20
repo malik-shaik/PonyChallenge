@@ -1,4 +1,4 @@
-import { PonyName } from 'constants/index'
+import { PonyNames as PonyName } from 'constants/index'
 import { Action } from 'constants/action-types'
 
 export interface GameData {
@@ -16,13 +16,13 @@ export const initialGameDataState: GameData = {
   difficulty: 1,
 }
 
-export type SetGameDataAction = {
-  type: Action.SET_GAME_DATA
+export type GameDataAction = {
+  type: Action.SET_GAME_DATA | Action.RESET_GAME_DATA
   payload: GameData
 }
 
 // **** Reducer ****
-export const reducer = (mazeData: GameData, action: SetGameDataAction) => {
+export const reducer = (mazeData: GameData, action: GameDataAction) => {
   const { type, payload } = action
 
   switch (type) {

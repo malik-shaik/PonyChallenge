@@ -17,6 +17,7 @@ export const DropDown: FC<DropDownProps> = ({ value, handleChange, items }) => {
   return (
     <FormControl className={classes.formControl}>
       <Select
+        data-testid="select"
         value={value}
         onChange={handleChange}
         disableUnderline

@@ -6,18 +6,18 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core'
-import { PonyName } from 'constants/index'
+import { PonyNames } from 'constants/index'
 import { getImageUrl } from 'helpers/get-image-url'
 import { GameContext } from 'context/game/context'
 import clsx from 'clsx'
 import { GameData, updateGameData } from 'context/game'
 
 interface PonyProps {
-  ponyKey: PonyName
+  ponyKey: PonyNames
 }
 export const Pony: FC<PonyProps> = ({ ponyKey }) => {
   const classes = useStyles()
-  const ponyName = PonyName[ponyKey as keyof typeof PonyName]
+  const ponyName = PonyNames[ponyKey as keyof typeof PonyNames]
   const { gameData, dispatch } = useContext(GameContext)
 
   const handleClick = () => {
