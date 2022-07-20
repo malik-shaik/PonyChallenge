@@ -70,12 +70,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     west: {
       borderLeft: '3px solid',
-      borderLeftColor: '#37000A',
+      borderLeftColor: theme.palette.secondary.main,
       marginLeft: -3,
     },
     north: {
       borderTop: '3px solid',
-      borderTopColor: '#37000A',
+      borderTopColor: theme.palette.secondary.main,
       marginTop: -3,
     },
     image: {

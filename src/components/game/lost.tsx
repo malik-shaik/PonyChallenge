@@ -5,6 +5,7 @@ import {
   Box,
   Typography,
   Button,
+  Theme,
 } from '@material-ui/core'
 import { Modal } from 'components/utils/modal'
 import { MazeContext } from 'context/maze/context'
@@ -33,10 +34,11 @@ export const Lost: FC = () => {
   const handleClick = () => {
     resetGameData(gameDataDispatch)
     resetMazeData(mazeDataDispatch)
+    setGameOver(false)
   }
 
   return (
-    <Modal open={true}>
+    <Modal open={gameOver}>
       <Box className={classes.container}>
         <img src={imageUrl} alt="" />
         <Typography className={classes.heading}>Game over</Typography>
@@ -51,12 +53,12 @@ export const Lost: FC = () => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       position: 'relative',
       textAlign: 'center',
-      color: 'white',
+      color: theme.palette.background.paper,
     },
     heading: {
       position: 'absolute',
@@ -75,7 +77,7 @@ const useStyles = makeStyles(
       position: 'absolute',
       bottom: '6%',
       left: '40%',
-      color: 'white',
+      color: theme.palette.background.paper,
       fontSize: '1.1rem',
       fontWeight: 'bold',
       textTransform: 'none',

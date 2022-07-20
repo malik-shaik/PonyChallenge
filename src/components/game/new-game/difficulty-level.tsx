@@ -5,6 +5,7 @@ import {
   Box,
   Typography,
   Slider,
+  Theme,
 } from '@material-ui/core'
 import { GameContext } from 'context/game/context'
 import { GameData, updateGameData } from 'context/game'
@@ -45,7 +46,7 @@ export const DifficultyLevel: FC = () => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     difficultySection: {
       padding: 20,
@@ -55,11 +56,11 @@ const useStyles = makeStyles(
     label: {
       fontSize: '1.1rem',
       fontWeight: 'bold',
-      color: '#5386e4',
+      color: theme.palette.primary.main,
     },
     slider: {
       marginLeft: 40,
-      color: '#5386e4',
+      color: theme.palette.primary.main,
       width: 200,
     },
   })

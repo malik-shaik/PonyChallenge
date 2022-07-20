@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -52,54 +52,56 @@ export const DropDown: FC<DropDownProps> = ({ value, handleChange, items }) => {
   )
 }
 
-const useStyles = makeStyles(() => ({
-  formControl: {
-    '& .MuiInputBase-root': {
-      color: '#5386e4',
-      borderColor: '#5386e4',
-      borderWidth: '2px',
-      borderStyle: 'solid',
-      borderRadius: '5px',
-      minWidth: '60px',
-      height: '30px',
-      justifyContent: 'center',
+const useStyles = makeStyles((theme: Theme) => {
+  return createStyles({
+    formControl: {
+      '& .MuiInputBase-root': {
+        color: theme.palette.primary.main,
+        borderColor: theme.palette.primary.main,
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderRadius: '5px',
+        minWidth: '60px',
+        height: '30px',
+        justifyContent: 'center',
+      },
+      '& .MuiSelect-select.MuiSelect-select': {
+        paddingRight: '0px',
+      },
     },
-    '& .MuiSelect-select.MuiSelect-select': {
-      paddingRight: '0px',
-    },
-  },
-  select: {
-    width: 'auto',
-    fontSize: '15px',
-    fontWeight: 'bold',
-    '&:focus': {
-      backgroundColor: 'transparent',
-    },
-  },
-  selectIcon: {
-    position: 'relative',
-    color: '#5386e4',
-    fontSize: '18px',
-  },
-  paper: {
-    borderRadius: 5,
-    marginTop: 8,
-  },
-  list: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    '& li': {
-      color: '#5386e4',
-      paddingTop: 4,
-      paddingBottom: 4,
+    select: {
+      width: 'auto',
       fontSize: '15px',
+      fontWeight: 'bold',
+      '&:focus': {
+        backgroundColor: 'transparent',
+      },
     },
-    '& li.Mui-selected': {
-      color: 'white',
-      background: '#5386e4',
+    selectIcon: {
+      position: 'relative',
+      color: theme.palette.primary.main,
+      fontSize: '18px',
     },
-    '& li.Mui-selected:hover': {
-      background: '#5386e4',
+    paper: {
+      borderRadius: 5,
+      marginTop: 8,
     },
-  },
-}))
+    list: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      '& li': {
+        color: theme.palette.primary.main,
+        paddingTop: 4,
+        paddingBottom: 4,
+        fontSize: '15px',
+      },
+      '& li.Mui-selected': {
+        color: theme.palette.background.paper,
+        background: theme.palette.primary.main,
+      },
+      '& li.Mui-selected:hover': {
+        background: theme.palette.primary.main,
+      },
+    },
+  })
+})

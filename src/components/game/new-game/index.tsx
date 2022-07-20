@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
-import { makeStyles, createStyles, Box } from '@material-ui/core'
+import { FC } from 'react'
+import { makeStyles, createStyles, Box, Theme } from '@material-ui/core'
 import { DifficultyLevel } from 'components/game/new-game/difficulty-level'
 import { TopBanner } from 'components/game/new-game/top-banner'
 import { Dimensions } from 'components/game/new-game/dimensions'
 import { SelectPony } from 'components/game/new-game/select-pony'
 import { CreateNewGame } from 'components/game/new-game/create-new-game'
+import { Info } from 'components/game/new-game/info'
 
 export const NewGame: FC = () => {
   const classes = useStyles()
@@ -19,20 +20,21 @@ export const NewGame: FC = () => {
         <SelectPony />
         <CreateNewGame />
       </Box>
+      <Info />
     </Box>
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      width: '500px',
+      maxWidth: '500px',
       margin: 'auto',
     },
     infoContainer: {
-      marginTop: 20,
-      padding: 10,
-      backgroundColor: 'white',
+      marginTop: '5%',
+      padding: '2%',
+      backgroundColor: theme.palette.background.paper,
     },
   })
 )

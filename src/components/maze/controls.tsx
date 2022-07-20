@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 300,
     },
     info: {
-      color: '#5386e4',
+      color: theme.palette.primary.main,
       fontSize: '0.9rem',
     },
     keysContainer: {
@@ -104,17 +104,17 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '5vmin',
       width: '5vmin',
       border: '2px solid blue',
-      borderColor: '#5386e4',
+      borderColor: theme.palette.primary.main,
       borderRadius: 5,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
-      color: '#5386e4',
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.primary.main,
       cursor: 'pointer',
       '&:hover': {
-        color: 'white',
-        backgroundColor: '#5386e4',
+        color: theme.palette.background.paper,
+        backgroundColor: theme.palette.primary.main,
       },
     },
   })

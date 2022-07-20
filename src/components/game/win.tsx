@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from 'react'
-import { makeStyles, createStyles, Box, Button } from '@material-ui/core'
+import { makeStyles, createStyles, Box, Button, Theme } from '@material-ui/core'
 import { Modal } from 'components/utils/modal'
 import Confetti from 'react-confetti'
 import { MazeContext } from 'context/maze/context'
@@ -48,12 +48,11 @@ export const Win: FC = () => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       position: 'relative',
       textAlign: 'center',
-      color: 'white',
     },
     image: {
       width: 600,
@@ -63,12 +62,14 @@ const useStyles = makeStyles(
       position: 'absolute',
       top: '35%',
       right: '9%',
-      color: '#5386e4',
+      color: theme.palette.background.paper,
+      backgroundColor: theme.palette.primary.main,
       fontSize: '1.2rem',
       fontWeight: 'bold',
       textTransform: 'none',
       '&:hover': {
-        textDecoration: 'underline',
+        color: theme.palette.background.paper,
+        backgroundColor: theme.palette.primary.light,
       },
     },
   })

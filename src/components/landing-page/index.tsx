@@ -1,10 +1,12 @@
 import { FC, useContext, useEffect } from 'react'
-import { makeStyles, createStyles, Box } from '@material-ui/core'
+import { makeStyles, createStyles, Box, Theme } from '@material-ui/core'
 import { MazeContext } from 'context/maze/context'
 import { loadMazeData } from 'context/maze/actions'
 import { Maze } from 'components/maze'
 import { NewGame } from 'components/game/new-game'
 import { GameContext } from 'context/game'
+import { Win } from 'components/game/win'
+import { Lost } from 'components/game/lost'
 
 export const LandingPage: FC = () => {
   const classes = useStyles()
@@ -21,16 +23,18 @@ export const LandingPage: FC = () => {
   return (
     <Box className={classes.main}>
       {sessionStorage.getItem('mazeId') ? <Maze /> : <NewGame />}
+      <Win />
+      <Lost />
     </Box>
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     main: {
       margin: 0,
-      minHeight: '100vh',
-      backgroundColor: '#EDE7D9',
+      height: '100vh',
+      backgroundColor: theme.palette.background.default,
     },
   })
 )

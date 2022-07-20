@@ -1,5 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
-import { Box, makeStyles, createStyles, Typography } from '@material-ui/core'
+import {
+  Box,
+  makeStyles,
+  createStyles,
+  Typography,
+  Theme,
+} from '@material-ui/core'
 import { DropDown } from 'components/utils/dropdown'
 import * as _ from 'lodash'
 import { GameContext } from 'context/game/context'
@@ -46,7 +52,7 @@ export const Dimensions = () => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     dimensionsContainer: {
       padding: '0 20px',
@@ -56,7 +62,7 @@ const useStyles = makeStyles(
     label: {
       fontSize: '1.1rem',
       fontWeight: 'bold',
-      color: '#5386e4',
+      color: theme.palette.primary.main,
       marginRight: 20,
     },
   })

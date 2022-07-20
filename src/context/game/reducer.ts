@@ -22,14 +22,16 @@ export type GameDataAction = {
 }
 
 // **** Reducer ****
-export const reducer = (mazeData: GameData, action: GameDataAction) => {
+export const reducer = (gameData: GameData, action: GameDataAction) => {
   const { type, payload } = action
 
   switch (type) {
     case Action.SET_GAME_DATA:
-      return { ...mazeData, ...payload }
+      return { ...gameData, ...payload }
+    case Action.RESET_GAME_DATA:
+      return { ...gameData, ...initialGameDataState }
 
     default:
-      return mazeData
+      return gameData
   }
 }

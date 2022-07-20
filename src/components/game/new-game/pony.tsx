@@ -4,6 +4,7 @@ import {
   Box,
   createStyles,
   makeStyles,
+  Theme,
   Typography,
 } from '@material-ui/core'
 import { PonyNames } from 'constants/index'
@@ -43,11 +44,11 @@ export const Pony: FC<PonyProps> = ({ ponyKey }) => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     pony: {
       border: 'solid 2px',
-      borderColor: '#5386e4',
+      borderColor: theme.palette.primary.main,
       borderRadius: 5,
       padding: '0px 5px',
       display: 'flex',
@@ -57,7 +58,7 @@ const useStyles = makeStyles(
       cursor: 'pointer',
       '&:hover': {
         textDecoration: 'underline',
-        color: '#5386e4',
+        color: theme.palette.primary.main,
       },
     },
     ponyAvatar: {
@@ -65,20 +66,20 @@ const useStyles = makeStyles(
       height: 25,
       margin: 5,
       border: 'solid 2px ',
-      borderColor: '#5386e4',
+      borderColor: theme.palette.primary.main,
     },
     ponyName: {
-      color: '#5386e4',
+      color: theme.palette.primary.main,
       fontSize: '0.9rem',
       marginRight: 5,
     },
     selected: {
-      backgroundColor: '#5386e4',
+      backgroundColor: theme.palette.primary.main,
       '& $ponyAvatar': {
-        borderColor: 'white',
+        borderColor: theme.palette.background.paper,
       },
       '& $ponyName': {
-        color: 'white',
+        color: theme.palette.background.paper,
       },
     },
   })

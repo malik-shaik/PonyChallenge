@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react'
-import { Box, Button, createStyles, makeStyles } from '@material-ui/core'
+import { Box, Button, createStyles, makeStyles, Theme } from '@material-ui/core'
 import { GameContext } from 'context/game'
 import { createMaze } from 'context/maze/actions'
 import { MazeContext } from 'context/maze/context'
@@ -17,8 +17,6 @@ export const CreateNewGame: FC = () => {
       <Button
         aria-label="create maze"
         className={classes.button}
-        disableElevation
-        disableFocusRipple
         variant="contained"
         onClick={handleClick}
       >
@@ -28,23 +26,22 @@ export const CreateNewGame: FC = () => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      width: '500px',
-      margin: 'auto',
+      width: '100%',
       display: 'flex',
       justifyContent: 'center',
-      paddingBottom: 20,
+      paddingBottom: '3%',
     },
     button: {
       textTransform: 'capitalize',
-      color: 'white',
-      backgroundColor: '#5386e4',
+      color: theme.palette.background.paper,
+      backgroundColor: '#d63c8c',
       fontSize: '1.05rem',
       '&:hover': {
-        color: 'white',
-        backgroundColor: '#5386e4',
+        color: theme.palette.background.paper,
+        backgroundColor: '#d63c8c',
         fontWeight: 'bold',
       },
     },

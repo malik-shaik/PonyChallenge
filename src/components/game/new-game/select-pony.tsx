@@ -1,5 +1,11 @@
 import { FC } from 'react'
-import { Box, createStyles, makeStyles, Typography } from '@material-ui/core'
+import {
+  Box,
+  createStyles,
+  makeStyles,
+  Theme,
+  Typography,
+} from '@material-ui/core'
 import { PonyNames } from 'constants/index'
 import { Pony } from 'components/game/new-game/pony'
 
@@ -22,7 +28,7 @@ export const SelectPony: FC = () => {
   )
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     ponyPickerContainer: {
       padding: 20,
@@ -30,7 +36,7 @@ const useStyles = makeStyles(
     label: {
       fontSize: '1.1rem',
       fontWeight: 'bold',
-      color: '#5386e4',
+      color: theme.palette.primary.main,
       marginRight: 20,
     },
     ponyPicker: {

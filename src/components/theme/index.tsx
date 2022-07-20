@@ -4,16 +4,14 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#37000A',
+      main: '#5386e4',
     },
     secondary: {
-      main: '#1B2941',
-      dark: '#071528',
-      light: '#D5D5D5',
-      contrastText: '#D5D5D5',
+      main: '#37000A',
     },
     background: {
-      default: '#ede7d9',
+      default: '#EDE7D9',
+      paper: '#FFF',
     },
   },
 

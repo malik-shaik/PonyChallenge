@@ -5,15 +5,13 @@ import * as _ from 'lodash'
 import { Cell } from 'components/maze/cell'
 import { CellItem, Wall } from 'constants/index'
 import { Row } from 'components/maze/row'
-import { Win } from 'components/game/win'
 import { Controls } from 'components/maze/controls'
-import { Lost } from 'components/game/lost'
 
 export const Maze: FC = () => {
   const classes = useStyles()
   const { mazeData } = useContext(MazeContext)
   const [rows, setRows] = useState<ReactNode[]>([])
-  console.log('MAZE...', mazeData)
+
   const loadMaze = () => {
     setRows([])
     let cellNumber = 0
@@ -70,16 +68,12 @@ export const Maze: FC = () => {
     return null
   }
 
-  console.log('maze data from maze', mazeData['game-state'])
-  console.log('maze data from maze', sessionStorage.getItem('mazeId'))
   return (
     <Box className={classes.section}>
       <Box data-testid="maze" className={classes.maze}>
         {rows}
       </Box>
       <Controls />
-      <Win />
-      <Lost />
     </Box>
   )
 }
@@ -89,11 +83,8 @@ const useStyles = makeStyles((theme: Theme) =>
     section: {
       padding: '2%',
       display: 'flex',
-      '& .MuiGrid-item': {
-        padding: 0,
-      },
+
       [theme.breakpoints.down('sm')]: {
-        // padding: '2% 8%',
         flexDirection: 'column',
       },
     },
@@ -102,12 +93,11 @@ const useStyles = makeStyles((theme: Theme) =>
       border: '3px solid ',
       borderColor: '#37000A',
       margin: 'auto',
-      backgroundColor: 'white',
+      backgroundColor: theme.palette.background.paper,
       display: 'flex',
       flexDirection: 'column',
       marginRight: 20,
       [theme.breakpoints.down('sm')]: {
-        marginRight: 0,
         margin: 'auto',
         marginBottom: 20,
       },

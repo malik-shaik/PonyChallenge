@@ -43,7 +43,8 @@ export const reducer = (mazeData: MazeData, action: MazeDataAction) => {
   switch (type) {
     case Action.SET_MAZE_DATA:
       return { ...mazeData, ...payload }
-
+    case Action.RESET_MAZE_DATA:
+      return { ...mazeData, ...initialMazeDataState }
     default:
       return mazeData
   }
