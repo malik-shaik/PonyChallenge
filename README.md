@@ -1,46 +1,93 @@
-# Getting Started with Create React App
+# Pony challenge <!-- omit in toc -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About <!-- omit in toc -->
 
-## Available Scripts
+This project is the solution for trustpilot code challenge which is to save a little Pony who is stuck in the maze guarded by the a monster called Domokun. Pony needs help to escape the maze by reaching the exit point before Domokun catches her.
 
-In the project directory, you can run:
+This app allows players to set difficulty level, define maze dimensions, choose pony character to create new maze. Players can use the direction controls displayed in the game or press arrow keys from the keyboard to move the pony.
 
-### `npm start`
+## Table of contents <!-- omit in toc -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Technology Stack](#technology-stack)
+- [Getting started](#getting-started)
+  - [Service Dependencies](#service-dependencies)
+  - [Installation, build and dev server](#installation-build-and-dev-server)
+- [Folder structure](#folder-structure)
+  - [`/src`](#src)
+  - [`packages/components`](#packagescomponents)
+  - [`packages/lib`](#packageslib)
+  - [`packages/schema`](#packagesschema)
+  - [`services/api`](#servicesapi)
+  - [`services/jobs`](#servicesjobs)
+  - [`tools`](#tools)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Technology Stack
 
-### `npm test`
+PonyChallenge app is built with the following stack.
+|Role|Technology|
+|-|-|
+|Language|[Typescript](https://www.typescriptlang.org/)|
+|Frontend|[React.js](https://reactjs.org/)|
+|Components|[Material-UI](https://material-ui.com/)|
+| Testing | [Jest](https://jestjs.io), [Testing Library](https://testing-library.com)|
+|API/Data|[Pony Challenge API](https://ponychallenge.trustpilot.com/api-docs/index.html#!/pony-challenge/)|
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Getting started
 
-### `npm run build`
+## Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application is dependent on [Pony Challenge API](https://ponychallenge.trustpilot.com/api-docs/index.html#!/pony-challenge/) data. Make sure to add env variables `REACT_APP_API_BASE_URL` and `REACT_APP_API_PONY_CHALLENGE_URL` to `.env` file. Check `.env.example` file for more info.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation, build and dev server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Get started by running the following from the root folder to install all dependency packages:
 
-### `npm run eject`
+```
+yarn
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+or
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+And, start the React.js server with:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+yarn start
+```
 
-## Learn More
+or
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app will be available at [http://localhost:3000](http://localhost:3000)
+
+# Folder structure
+
+## `/src`
+
+This is the main folder that organizes all of the main application code into several folders and files.
+
+## `src/components`
+
+The React components used to build the application. The app uses [Component Driven Develompment](https://www.componentdriven.org/) to build the application from the "bottom up" using smaller components incorporated into larger components. Smaller components use [Material-UI](https://material-ui.com/) to build larger functional pieces.
+
+## `src/helpers`
+
+Pure Typescript functions meant to encapsulate our business logic that into small, testable functions.
+
+## `packages/schema`
+
+Currently a combination of our [Prisma](https://www.prisma.io/) schema, the output from [TypeGraphQLPrisma](https://prisma.typegraphql.com), and our GraphQL queries, mutations, and fragments.
+
+## `services/api`
+
+The Apollo GraphQL server used to serve both generated and custom resolvers. The API layer starts with [GraphQL](https://graphql.org/) and the [Apollo GraphQL](https://www.apollographql.com/) client/server library. On the backend, the GraphQL resolvers use [Prisma](https://www.prisma.io/) as an ORM for interactions with the database as well as database migrations. We use the [TypeGraphQL Prisma](https://typegraphql.com/docs/prisma.html) integration to autogenerate types, which can be imorted via `@acter/schema` after running `yarn generate`.
+
+## `services/jobs`
+
+Various asynchronous jobs like email notifications and daily digest creation
