@@ -9,9 +9,11 @@ export const TopBanner: FC = () => {
       <img
         src={getImageUrl({ imageName: 'top-banner' })}
         alt="top banner"
+        data-testid="top-banner"
         className={classes.image}
       />
       <img
+        data-testid="title-banner"
         src={getImageUrl({ imageName: 'help-save-the-pony' })}
         alt="title"
         className={classes.image}

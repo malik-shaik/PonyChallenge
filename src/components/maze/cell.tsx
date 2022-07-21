@@ -21,6 +21,7 @@ export const Cell: FC<CellProps> = ({ walls, cellItem, leftCell, topCell }) => {
 
   return (
     <Box
+      data-testid="cell"
       className={clsx(
         classes.cell,
         walls.includes(Wall.NORTH) && classes.north,
@@ -29,6 +30,7 @@ export const Cell: FC<CellProps> = ({ walls, cellItem, leftCell, topCell }) => {
     >
       {cellItem === CellItem.DOMOKUN && (
         <img
+          data-testid="domokun"
           className={classes.image}
           src={getImageUrl({ imageName: 'domokun' })}
           alt="domokun"
@@ -36,6 +38,7 @@ export const Cell: FC<CellProps> = ({ walls, cellItem, leftCell, topCell }) => {
       )}
       {cellItem === CellItem.PONY && (
         <img
+          data-testid="pony"
           src={getImageUrl({
             imageName: getPonyImageName(gameData['maze-player-name']) as string,
             type: 'pony',
@@ -46,6 +49,7 @@ export const Cell: FC<CellProps> = ({ walls, cellItem, leftCell, topCell }) => {
       )}
       {cellItem === CellItem.EXIT && (
         <img
+          data-testid="exit"
           src={getImageUrl({ imageName: 'door' })}
           alt="exit"
           className={classes.image}

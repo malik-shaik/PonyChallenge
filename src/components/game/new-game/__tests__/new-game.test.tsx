@@ -47,10 +47,10 @@ describe('<NewGame />', () => {
   })
 
   it('Should have pony picker which must have valid number of ponys', async () => {
-    expect(screen.getByTestId('pony picker label')).toHaveTextContent(
+    expect(screen.getByTestId('pony-picker-label')).toHaveTextContent(
       'Select your Pony'
     )
-    expect(screen.getByTestId('pony picker').childNodes.length).toBe(
+    expect(screen.getByTestId('pony-picker').childNodes.length).toBe(
       _.keysIn(PonyNames).length
     )
   })

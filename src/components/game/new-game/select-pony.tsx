@@ -16,10 +16,10 @@ export const SelectPony: FC = () => {
 
   return (
     <Box className={classes.ponyPickerContainer}>
-      <Typography data-testid="pony picker label" className={classes.label}>
+      <Typography data-testid="pony-picker-label" className={classes.label}>
         Select your Pony
       </Typography>
-      <Box data-testid="pony picker" className={classes.ponyPicker}>
+      <Box data-testid="pony-picker" className={classes.ponyPicker}>
         {allPonysKeys.map((ponyKey) => (
           <Pony key={`key-${ponyKey}`} ponyKey={ponyKey as PonyNames} />
         ))}

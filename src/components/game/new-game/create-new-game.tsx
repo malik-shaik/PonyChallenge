@@ -16,7 +16,7 @@ export const CreateNewGame: FC = () => {
     <Box className={classes.container}>
       <Button
         aria-label="create maze"
-        className={classes.button}
+        className={classes.createMazeBtn}
         variant="contained"
         onClick={handleClick}
       >
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       paddingBottom: '3%',
     },
-    button: {
+    createMazeBtn: {
       textTransform: 'capitalize',
       color: theme.palette.background.paper,
       backgroundColor: '#d63c8c',

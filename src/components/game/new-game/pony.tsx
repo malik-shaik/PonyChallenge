@@ -28,6 +28,7 @@ export const Pony: FC<PonyProps> = ({ ponyKey }) => {
 
   return (
     <Box
+      data-testid={`pony-character-${ponyName}`}
       className={clsx(
         classes.pony,
         gameData['maze-player-name'] === ponyName && classes.selected

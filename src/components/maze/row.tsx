@@ -8,7 +8,11 @@ interface RowProps {
 export const Row: FC<RowProps> = ({ children }) => {
   const { mazeData } = useContext(MazeContext)
   const classes = useStyles({ width: mazeData.size[0] })
-  return <Box className={classes.row}>{children}</Box>
+  return (
+    <Box data-testid="row" className={classes.row}>
+      {children}
+    </Box>
+  )
 }
 
 const useStyles = makeStyles(

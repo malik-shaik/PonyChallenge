@@ -32,6 +32,7 @@ export const Dimensions = () => {
         Height
       </Typography>
       <DropDown
+        key="height"
         value={height}
         handleChange={(evt) => setHeight(evt.target.value as number)}
         items={_.range(15, 26)}
@@ -44,6 +45,7 @@ export const Dimensions = () => {
         Width
       </Typography>
       <DropDown
+        key="width"
         value={width}
         handleChange={(evt) => setWidth(evt.target.value as number)}
         items={_.range(15, 26)}
