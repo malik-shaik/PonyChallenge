@@ -25,6 +25,7 @@
     "build": "react-scripts build",
     "check-types": "tsc",
     "cy:run": "cypress run",
+    "cy:open": "cypress open",
     "test:e2e": "cypress run --headed",
     "test": "jest",
     "test:watch": "jest --watch",
