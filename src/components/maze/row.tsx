@@ -19,7 +19,6 @@ const useStyles = makeStyles(
   createStyles({
     row: {
       display: 'flex',
-      // flexGrow: 1,
     },
   })
 )
