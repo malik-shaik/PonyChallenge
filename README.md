@@ -76,7 +76,7 @@ The React components used to build the application. This app uses [Component Dri
 
 ## `src/context`
 
-This app uses React Context API for state management which serves the global state into the components across the application. All the stores, reducers, actions and context related files are placed in this folder.
+This app uses [React Context API](https://reactjs.org/docs/context.html) for state management which serves the global state into the components across the application. All the stores, reducers, actions and context related files are placed in this folder.
 
 ## `src/helpers`
 
