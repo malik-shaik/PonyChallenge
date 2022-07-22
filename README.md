@@ -14,12 +14,10 @@ This app allows players to set difficulty level, define maze dimensions, choose 
   - [Installation, build and dev server](#installation-build-and-dev-server)
 - [Folder structure](#folder-structure)
   - [`/src`](#src)
-  - [`packages/components`](#packagescomponents)
-  - [`packages/lib`](#packageslib)
-  - [`packages/schema`](#packagesschema)
-  - [`services/api`](#servicesapi)
-  - [`services/jobs`](#servicesjobs)
-  - [`tools`](#tools)
+  - [`src/components`](#srccomponents)
+  - [`src/context`](#srccontext)
+  - [`src/helpers`](#srchelpers)
+  - [`cypress/e2e`](#cypresse2e)
 
 # Technology Stack
 
@@ -29,7 +27,7 @@ PonyChallenge app is built with the following stack.
 |Language|[Typescript](https://www.typescriptlang.org/)|
 |Frontend|[React.js](https://reactjs.org/)|
 |Components|[Material-UI](https://material-ui.com/)|
-| Testing | [Jest](https://jestjs.io), [Testing Library](https://testing-library.com)|
+| Testing | [Jest](https://jestjs.io), [Testing Library](https://testing-library.com), [Cypress](https://www.cypress.io/)|
 |API/Data|[Pony Challenge API](https://ponychallenge.trustpilot.com/api-docs/index.html#!/pony-challenge/)|
 
 # Getting started
@@ -74,20 +72,16 @@ This is the main folder that organizes all of the main application code into sev
 
 ## `src/components`
 
-The React components used to build the application. The app uses [Component Driven Develompment](https://www.componentdriven.org/) to build the application from the "bottom up" using smaller components incorporated into larger components. Smaller components use [Material-UI](https://material-ui.com/) to build larger functional pieces.
+The React components used to build the application. This app uses [Component Driven Development](https://www.componentdriven.org/) to build the application from the "bottom up" using smaller components incorporated into larger components. Smaller components use [Material-UI](https://material-ui.com/) to build larger functional pieces.
+
+## `src/context`
+
+This app uses React Context API for state management which serves the global state into the components across the application. All the stores, reducers, actions and context related files are placed in this folder.
 
 ## `src/helpers`
 
-Pure Typescript functions meant to encapsulate our business logic that into small, testable functions.
+Pure Typescript functions meant to encapsulate the reusable business logic into small, testable functions.
 
-## `packages/schema`
+## `cypress/e2e`
 
-Currently a combination of our [Prisma](https://www.prisma.io/) schema, the output from [TypeGraphQLPrisma](https://prisma.typegraphql.com), and our GraphQL queries, mutations, and fragments.
-
-## `services/api`
-
-The Apollo GraphQL server used to serve both generated and custom resolvers. The API layer starts with [GraphQL](https://graphql.org/) and the [Apollo GraphQL](https://www.apollographql.com/) client/server library. On the backend, the GraphQL resolvers use [Prisma](https://www.prisma.io/) as an ORM for interactions with the database as well as database migrations. We use the [TypeGraphQL Prisma](https://typegraphql.com/docs/prisma.html) integration to autogenerate types, which can be imorted via `@acter/schema` after running `yarn generate`.
-
-## `services/jobs`
-
-Various asynchronous jobs like email notifications and daily digest creation
+To ensure that the app behave as expected, end-to-end testing been implemented with [Cypress](https://www.cypress.io/).
