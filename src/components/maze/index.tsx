@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, ReactNode, useContext, useEffect, useState } from 'react'
 import { Box, createStyles, makeStyles, Theme } from '@material-ui/core'
 import { MazeContext } from 'context/maze/context'

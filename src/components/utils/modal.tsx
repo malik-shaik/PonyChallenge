@@ -2,19 +2,6 @@ import { FC, ReactNode, useState } from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import { Modal as MUIModal } from '@material-ui/core'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      margin: 'auto',
-      outline: 'none',
-    },
-    modal: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-  })
-)
-
 interface ModalProps {
   children: ReactNode
   open: boolean
@@ -42,3 +29,16 @@ export const Modal: FC<ModalProps> = ({ children, open }) => {
     </MUIModal>
   )
 }
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      margin: 'auto',
+      outline: 'none',
+    },
+    modal: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  })
+)
